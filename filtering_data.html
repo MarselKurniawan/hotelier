@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="refresh" content="30"> Refresh halaman setiap 30 detik -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Data from Puppeteer</title>
+</head>
+
+<body>
+    <h1>Room Types and Rates</h1>
+
+    <label for="hotel-select">Choose a hotel:</label>
+    <select id="hotel-select">
+        <option value="https://cloud.sinergimax.com/booking/gapura-hotel-semarang_2828.html">Gapura Hotel Semarang
+        </option>
+        <option value="https://cloud.sinergimax.com/booking/cozzy-stay_2220.html">Cozzy Stay</option>
+        <option value="https://cloud.sinergimax.com/booking/berlian-abadi-hotel_3052.html">Berlian Abadi Hotel</option>
+        <option value="https://cloud.sinergimax.com/booking/hotel-youstay-semarang_3389.html">Hotel Youstay Semarang
+        </option>
+        <option value="https://cloud.sinergimax.com/booking/omni-rooms-semarang_12722.html">Omni Rooms Semarang</option>
+    </select>
+
+    <div id="data-container"></div>
+
+    <script>
+        function fetchData(url) {
+            fetch('https://bachelor-mod-guards-convicted.trycloudflare.com/server/data.json') // Ganti dengan URL endpoint API Anda
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('data-container');
+                    container.innerHTML = ''; // Kosongkan kontainer sebelum menambah data baru
+
+                    // Check if the selected URL exists in the data
+                    if (data[url]) {
+                        const roomTypes = data[url].roomTypes;
+                        const rates = data[url].rates;
+
+                        // Display data in paragraphs
+                        roomTypes.forEach((roomType, index) => {
+                            const paragraph = document.createElement('p');
+                            paragraph.textContent = `${roomType}: ${rates[index]}`;
+                            container.appendChild(paragraph);
+                        });
+                    } else {
+                        container.textContent = 'No data available for the selected hotel.';
+                    }
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        document.getElementById('hotel-select').addEventListener('change', function () {
+            const selectedUrl = this.value;
+            fetchData(selectedUrl);
+        });
+
+        // Fetch data for the initially selected hotel
+        fetchData(document.getElementById('hotel-select').value);
+    </script>
+</body>
+
+</html>
