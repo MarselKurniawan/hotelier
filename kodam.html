@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="refresh" content="30"> Refresh halaman setiap 30 detik -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Data from Puppeteer</title>
+</head>
+
+<body>
+   
+
+    <div id="data-container"></div>
+
+    <script>
+        const hotelData = {
+            "https://cloud.sinergimax.com/booking/gapura-hotel-semarang_2828.html": {
+                "roomTypes": [
+                    "Superior Monthly Deal - Gapura Homestay",
+                    "Deluxe Monthly Deal - Gapura Homestay",
+                    "Weekly Deal Stay With Gapura",
+                    "Superior Homestay",
+                    "Superior Residence",
+                    "Deluxe Residence",
+                    "Executive Residence",
+                    "Deluxe VIP Homestay",
+                    "Deluxe Homestay"
+                ],
+                "rates": [
+                    "Rp 86.670",
+                    "Rp 106.700",
+                    "Rp 206.882",
+                    "Rp 221.052",
+                    "Rp 225.862",
+                    "Rp 241.332",
+                    "Rp 273.312",
+                    "Rp 282.802",
+                    "Rp 292.032",
+                    "Rp 302.172",
+                    "Rp 320.762",
+                    "Rp 330.252",
+                    "Rp 342.732",
+                    "Rp 352.872"
+                ]
+            },
+            "https://cloud.sinergimax.com/booking/cozzy-stay_2220.html": {
+                "roomTypes": [
+                    "Cozzy Room",
+                    "Comfort Room"
+                ],
+                "rates": [
+                    "Rp 296.380",
+                    "Rp 336.649"
+                ]
+            },
+            "https://cloud.sinergimax.com/booking/berlian-abadi-hotel_3052.html": {
+                "roomTypes": [
+                    "Standard Room",
+                    "Superior Twin",
+                    "Superior Queen",
+                    "Deluxe Twin",
+                    "Deluxe Double",
+                    "Executive Room",
+                    "Suite Room"
+                ],
+                "rates": [
+                    "Rp 145.400",
+                    "Rp 203.560",
+                    "Rp 232.640",
+                    "Rp 261.720",
+                    "Rp 290.800",
+                    "Rp 465.280",
+                    "Rp 581.600"
+                ]
+            },
+            "https://cloud.sinergimax.com/booking/hotel-youstay-semarang_3389.html": {
+                "roomTypes": [
+                    "Standard Room",
+                    "Superior Room",
+                    "Deluxe Room",
+                    "Deluxe Family Room"
+                ],
+                "rates": [
+                    "Rp 318.789",
+                    "Rp 349.941",
+                    "Rp 391.477",
+                    "Rp 516.085"
+                ]
+            },
+            "https://cloud.sinergimax.com/booking/omni-rooms-semarang_12722.html": {
+                "roomTypes": [
+                    "Omni Express",
+                    "Omni Smart",
+                    "Omni Comfort Double",
+                    "Omni Comfort Twin"
+                ],
+                "rates": [
+                    "Rp 231.000",
+                    "Rp 275.000",
+                    "Rp 357.500",
+                    "Rp 385.000"
+                ]
+            }
+        };
+
+        function formatCurrency(value) {
+            return value.replace('Rp ', 'Rp ');
+        }
+
+        function fetchData(url) {
+            const container = document.getElementById('data-container');
+            container.innerHTML = '';
+
+            if (hotelData[url]) {
+                const roomTypes = hotelData[url].roomTypes;
+                const rates = hotelData[url].rates.map(rate => parseInt(rate.replace(/[^\d]/g, '')));
+
+
+                const sortedRates = rates.sort((a, b) => a - b).map(rate => `Rp ${rate.toLocaleString('id-ID')}`);
+
+
+                const paragraph = document.createElement('p');
+                paragraph.textContent = `${roomTypes[0]} ${sortedRates[0]} - ${roomTypes[roomTypes.length - 1]} ${sortedRates[sortedRates.length - 1]}`;
+                container.appendChild(paragraph);
+            } else {
+                container.textContent = 'No data available for the selected hotel.';
+            }
+        }
+
+        // document.getElementById('hotel-select').addEventListener('change', function () {
+        //     const selectedUrl = "https://cloud.sinergimax.com/booking/gapura-hotel-semarang_2828.html";
+        //     fetchData(selectedUrl);
+        // });
+
+        // fetchData(document.getElementById('hotel-select').value);
+        const selectedUrl = "https://cloud.sinergimax.com/booking/gapura-hotel-semarang_2828.html";
+        fetchData(selectedUrl);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "ibe.js",
+  "scripts": {
+    "start": "node ibe.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "puppeteer": "^22.12.1"
+  }
+}

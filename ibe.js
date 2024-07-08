@@ -44,9 +44,9 @@ async function scrapeAndSaveData() {
   const urls = [
     'https://cloud.sinergimax.com/booking/gapura-hotel-semarang_2828.html',
     'https://cloud.sinergimax.com/booking/cozzy-stay_2220.html',
-    'https://cloud.sinergimax.com/booking/berlian-abadi-hotel_3052.html',
-    'https://cloud.sinergimax.com/booking/hotel-youstay-semarang_3389.html',
-    'https://cloud.sinergimax.com/booking/omni-rooms-semarang_12722.html'
+    // 'https://cloud.sinergimax.com/booking/berlian-abadi-hotel_3052.html',
+    // 'https://cloud.sinergimax.com/booking/hotel-youstay-semarang_3389.html',
+    // 'https://cloud.sinergimax.com/booking/omni-rooms-semarang_12722.html'
   ];
 
   const results = {};

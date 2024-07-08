@@ -3,41 +3,158 @@
 
 <head>
     <meta charset="UTF-8">
+    <!-- <meta http-equiv="refresh" content="30"> Refresh halaman setiap 30 detik -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Display Data from Puppeteer</title>
 </head>
 
 <body>
+    <h1>Room Types and Rates</h1>
+
+    <label for="hotel-select">Choose a hotel:</label>
+    <select id="hotel-select">
+        <option value="https://cloud.sinergimax.com/booking/gapura-hotel-semarang_2828.html">Gapura Hotel Semarang
+        </option>
+        <option value="https://cloud.sinergimax.com/booking/cozzy-stay_2220.html">Cozzy Stay</option>
+        <option value="https://cloud.sinergimax.com/booking/berlian-abadi-hotel_3052.html">Berlian Abadi Hotel</option>
+        <option value="https://cloud.sinergimax.com/booking/hotel-youstay-semarang_3389.html">Hotel Youstay Semarang
+        </option>
+        <option value="https://cloud.sinergimax.com/booking/omni-rooms-semarang_12722.html">Omni Rooms Semarang</option>
+    </select>
+
+    <div id="data-container"></div>
+
     <script>
-        function fetchData() {
-            fetch('https://33e6-103-17-244-55.ngrok-free.app/server/data.json') // Ganti dengan URL endpoint API Anda
-                .then(response => {
-                    console.log('Response status:', response.status);
-                    console.log('Response headers:', response.headers);
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Fetched data:', data); // Tambahkan ini untuk debugging
-                    const container = document.getElementById('data-container');
-                    container.innerHTML = ''; // Kosongkan kontainer sebelum menambah data baru
+        const hotelData = {
+            "https://cloud.sinergimax.com/booking/gapura-hotel-semarang_2828.html": {
+                "roomTypes": [
+                    "Superior Monthly Deal - Gapura Homestay",
+                    "Deluxe Monthly Deal - Gapura Homestay",
+                    "Weekly Deal Stay With Gapura",
+                    "Superior Homestay",
+                    "Superior Residence",
+                    "Deluxe Residence",
+                    "Executive Residence",
+                    "Deluxe VIP Homestay",
+                    "Deluxe Homestay"
+                ],
+                "rates": [
+                    "Rp 86.670",
+                    "Rp 106.700",
+                    "Rp 206.882",
+                    "Rp 221.052",
+                    "Rp 225.862",
+                    "Rp 241.332",
+                    "Rp 273.312",
+                    "Rp 282.802",
+                    "Rp 292.032",
+                    "Rp 302.172",
+                    "Rp 320.762",
+                    "Rp 330.252",
+                    "Rp 342.732",
+                    "Rp 352.872"
+                ]
+            },
+            "https://cloud.sinergimax.com/booking/cozzy-stay_2220.html": {
+                "roomTypes": [
+                    "Cozzy Room",
+                    "Comfort Room"
+                ],
+                "rates": [
+                    "Rp 296.380",
+                    "Rp 336.649"
+                ]
+            },
+            "https://cloud.sinergimax.com/booking/berlian-abadi-hotel_3052.html": {
+                "roomTypes": [
+                    "Standard Room",
+                    "Superior Twin",
+                    "Superior Queen",
+                    "Deluxe Twin",
+                    "Deluxe Double",
+                    "Executive Room",
+                    "Suite Room"
+                ],
+                "rates": [
+                    "Rp 145.400",
+                    "Rp 203.560",
+                    "Rp 232.640",
+                    "Rp 261.720",
+                    "Rp 290.800",
+                    "Rp 465.280",
+                    "Rp 581.600"
+                ]
+            },
+            "https://cloud.sinergimax.com/booking/hotel-youstay-semarang_3389.html": {
+                "roomTypes": [
+                    "Standard Room",
+                    "Superior Room",
+                    "Deluxe Room",
+                    "Deluxe Family Room"
+                ],
+                "rates": [
+                    "Rp 318.789",
+                    "Rp 349.941",
+                    "Rp 391.477",
+                    "Rp 516.085"
+                ]
+            },
+            "https://cloud.sinergimax.com/booking/omni-rooms-semarang_12722.html": {
+                "roomTypes": [
+                    "Omni Express",
+                    "Omni Smart",
+                    "Omni Comfort Double",
+                    "Omni Comfort Twin"
+                ],
+                "rates": [
+                    "Rp 231.000",
+                    "Rp 275.000",
+                    "Rp 357.500",
+                    "Rp 385.000"
+                ]
+            }
+        };
 
-                    const roomTypes = data.roomTypes;
-                    const rates = data.rates;
+        function fetchData(url) {
+            const container = document.getElementById('data-container');
+            container.innerHTML = ''; // Kosongkan kontainer sebelum menambah data baru
 
-                    // Tampilkan data dalam bentuk paragraf (<p>)
-                    roomTypes.forEach((roomType, index) => {
-                        const paragraph = document.createElement('p');
-                        paragraph.textContent = `${roomType}: ${rates[index]}`;
-                        container.appendChild(paragraph);
-                    });
-                })
-                .catch(error => console.error('Error fetching data:', error));
+            // Check if the selected URL exists in the data
+            if (hotelData[url]) {
+                const roomTypes = hotelData[url].roomTypes;
+                const rates = hotelData[url].rates;
+
+                // Display data in paragraphs
+                roomTypes.forEach((roomType, index) => {
+                    const paragraph = document.createElement('p');
+                    paragraph.textContent = `${roomType}: ${rates[index]}`;
+                    container.appendChild(paragraph);
+                });
+            } else {
+                container.textContent = 'No data available for the selected hotel.';
+            }
         }
 
-        fetchData();
-        // setInterval(fetchData, 30000); // Refresh data setiap 30 detik
+        document.getElementById('hotel-select').addEventListener('change', function () {
+            const selectedUrl = this.value;
+            fetchData(selectedUrl);
+        });
 
+        // Fetch data for the initially selected hotel
+        fetchData(document.getElementById('hotel-select').value);
     </script>
 </body>
 
 </html>
+
+<!-- 
+<select id="hotel-select">
+    <option selected value="https://cloud.sinergimax.com/booking/gapura-hotel-semarang_2828.html">Gapura Hotel
+        Semarang
+    </option>
+    <option value="https://cloud.sinergimax.com/booking/cozzy-stay_2220.html">Cozzy Stay</option>
+    <option value="https://cloud.sinergimax.com/booking/berlian-abadi-hotel_3052.html">Berlian Abadi Hotel</option>
+    <option value="https://cloud.sinergimax.com/booking/hotel-youstay-semarang_3389.html">Hotel Youstay Semarang
+    </option>
+    <option value="https://cloud.sinergimax.com/booking/omni-rooms-semarang_12722.html">Omni Rooms Semarang</option>
+</select> -->

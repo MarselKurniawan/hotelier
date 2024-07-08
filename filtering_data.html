@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <!-- <meta http-equiv="refresh" content="30"> Refresh halaman setiap 30 detik -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Display Data from Puppeteer</title>
 </head>
@@ -26,7 +25,7 @@
 
     <script>
         function fetchData(url) {
-            fetch('https://bachelor-mod-guards-convicted.trycloudflare.com/server/data.json') // Ganti dengan URL endpoint API Anda
+            fetch('data.json') // Ganti dengan URL endpoint API Anda
                 .then(response => response.json())
                 .then(data => {
                     const container = document.getElementById('data-container');

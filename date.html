@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+        integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="https://www.bookandlink.com/ratewidget/ratewidget_v2.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+
+        body {
+            font-family: "Poppins", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        #datepicker {
+            font-family: "Poppins", sans-serif !important;
+            font-weight: 500 !important;
+            font-style: normal !important;
+        }
+
+        .ui-datepicker-month {
+            font-family: "Poppins", sans-serif !important;
+            font-weight: 500 !important;
+            font-style: normal !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-sm-4 display">
+            <div class="btn-group">
+                <div class="styled-select slate">
+                    <select class="currency_select">
+                        <option value="">Change Default Currency</option>
+                        <option value="AUD">AUD</option>
+                        <option value="EUR">EURO</option>
+                        <option value="IDR">IDR</option>
+                        <option value="SGD">SGD</option>
+                        <option value="USD">USD</option>
+                    </select>
+                </div>
+                <div class="styled-select slate">
+                    <select id="rateplan_room">
+                        <option value="24419">Superior Homestay</option>
+                        <option value="24391">Superior Residence</option>
+                        <option value="24392">Deluxe Residence</option>
+                        <option value="24393">Executive Residence</option>
+                        <option value="24420">Deluxe Homestay</option>
+                        <option value="24421">Deluxe VIP Homestay</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div style="padding-top: 10px;font-weight:bold" id="default-currency"></div>
+        </div>
+        <div class="col-sm-12" style="margin-top:20px;margin-bottom:20px;">
+            <div style="display:inline-block">
+                <div style="display:block">
+                    <div style="display:inline-block;width:100px;"><label><b>Checkin:</b></label></div>
+                    <div style="display:inline-block;width:120px;"><span id="arrival_bnl">Select Checkin</span> <label
+                            id="checkinDate"></label></div>
+                </div>
+                <div style="display:block">
+                    <div style="display:inline-block;width:100px;"><label><b>Checkout:</b></label></div>
+                    <div style="display:inline-block;width:120px;"><span id="departure_bnl">Select Checkout</span>
+                        <label id="checkoutDate"></label>
+                    </div>
+                </div>
+            </div>
+            <div
+                style="background-color:grey;display:inline-block;vertical-align: top;height: 44px;border-radius:3px;color:white">
+                <div
+                    style="display: inline-block;vertical-align: top;height: 100%;padding: 11px 3px 0 3px;font-weight: bold;">
+                    Total:</div>
+                <div id="total"
+                    style="display:inline-block;background:#4a4444;height: 44px;text-align:center;border-radius:3px">
+                </div>
+            </div>
+            <div style="display:inline-block;vertical-align: top;height: 44px;">
+                <div class="book_now_bnl">BOOK NOW</div>
+            </div>
+        </div>
+    </div>
+    <div data-min_night="2" data-months="2" data-url="bookandlink.com" data-arrow="false" data-rateplan="24421"
+        data-roomtype="9979" data-property="2828" id="datepicker"></div>
+    <script src="https://bookandlink.com/ratewidget/ratewidget_v2.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Load saved room type from localStorage and set it
+            if (localStorage.getItem('selectedRoomType')) {
+                var savedRoomType = localStorage.getItem('selectedRoomType');
+                $('#rateplan_room').val(savedRoomType);
+                $('#datepicker').attr('data-rateplan', savedRoomType);
+            }
+
+            // Display the selected room type ID in console
+            console.log('Selected Room Type ID:', $('#rateplan_room').val());
+
+            $('#rateplan_room').change(function () {
+                var selectedRoomType = $(this).val();
+                $('#datepicker').attr('data-rateplan', selectedRoomType);
+
+                // Save the selected value to localStorage
+                localStorage.setItem('selectedRoomType', selectedRoomType);
+
+                location.reload();
+            });
+
+              var rateplan = $('#datepicker').attr('data-rateplan');
+            console.log("Data Rateplan: " + rateplan);
+        });
+    </script>
+
+</body>
+
+</html>
