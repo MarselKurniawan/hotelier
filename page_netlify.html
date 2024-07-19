@@ -4,332 +4,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frontend Developer Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
     <style>
-        body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f5f5f5;
-    color: #333;
-}
+        /* Container */
+        .search-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid #d0ddea;
+            border-radius: 10px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+        }
 
-.container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
-}
+        /* Input field */
+        .search-container input[type="search"] {
+            border: none;
+            outline: none;
+            font-size: 16px;
+            padding: 15px;
+            flex: 1;
+            margin-right: 10px;
+            background-color: white;
+            color: black;
+            height: 50px;
+        }
 
-.navbar {
-    background: #fff;
-    color: #333;
-    padding: 15px 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+        /* Submit button */
+        .search-container button {
+            background-color: #1E90FF;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        .search-container button:hover {
+            background-color: #1C86EE;
+        }
 
-.navbar .logo {
-    font-size: 24px;
-    font-weight: bold;
-}
+        /* Icon inside the button */
+        .search-container button svg {
+            margin-right: 5px;
+            color: white;
+        }
 
-.navbar .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-}
-
-.navbar .nav-links li a {
-    color: #333;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-.navbar .nav-links li a:hover {
-    color: #928dab;
-}
-
-.navbar .profile-pic img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
-
-.jumbotron {
-    background: linear-gradient(135deg, #928dab, #1f1c2c);
-    color: #fff;
-    padding: 100px 0;
-    text-align: center;
-}
-
-.jumbotron h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-}
-
-.jumbotron h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-.jumbotron p {
-    font-size: 24px;
-    margin-bottom: 40px;
-}
-
-.jumbotron .buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-.jumbotron .btn {
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 18px;
-    transition: background 0.3s;
-}
-
-.primary-btn {
-    background: #333;
-    color: #fff;
-}
-
-.primary-btn:hover {
-    background: #928dab;
-}
-
-.secondary-btn {
-    background: #fff;
-    color: #333;
-}
-
-.secondary-btn:hover {
-    background: #f0f0f0;
-}
-
-.projects, .experience, .skills {
-    padding: 60px 0;
-}
-
-.projects h2, .experience h2, .skills h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-.projects .project-list, .skills .skills-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.project-item, .skills-column {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    flex: 1 1 calc(50% - 20px);
-}
-
-.project-item img {
-    width: 100%;
-    border-radius: 8px;
-}
-
-.project-item h3, .skills-column h3 {
-    margin: 20px 0 10px;
-}
-
-.project-item p, .skills-column ul {
-    font-size: 16px;
-}
-
-.skills-column ul {
-    list-style: none;
-    padding: 0;
-}
-
-.skills-column ul li {
-    margin-bottom: 10px;
-}
-
-.experience-item {
-    margin-bottom: 40px;
-}
-
-.experience-item h3 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.experience-item p {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.experience-item ul {
-    list-style: none;
-    padding: 0;
-}
-
-.experience-item ul li {
-    font-size: 16px;
-    margin-bottom: 5px;
-}
-
-.footer {
-    background: #1f1c2c;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-}
-
-.footer p {
-    margin: 0;
-}
-
+        .place {
+            display: none;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
     </style>
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <a href="#" class="logo">Home</a>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">About</a></li>
-            </ul>
-            <div class="profile-pic">
-                <img src="profile.jpg" alt="Profile Picture">
-            </div>
-        </div>
-    </nav>
+    <div class="search-container">
+        <input type="search" placeholder="Ex: Jakarta, Bandung, Surabaya, etc." id="search-input">
+        <button id="search-button">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                    d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
+            </svg>
+            Find It!
+        </button>
+    </div>
 
-    <header class="jumbotron">
-        <div class="container">
-            <h1>Hey, I'm Yoga</h1>
-            <h2>Lorem Ipsum</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, ea amet eligendi explicabo quibusdam nesciunt enim. Suscipit est exercitationem eum maiores, error natus recusandae ullam nam ad mollitia officia nobis?</p>
-            <div class="buttons">
-                <a href="#" class="btn primary-btn">Get In Touch</a>
-                <a href="#" class="btn secondary-btn">Browse Projects</a>
-            </div>
+    <div id="results-container">
+        <div class="place" data-name="jakarta">
+            <h2>Jakarta</h2>
+            <p>Details about Jakarta...</p>
         </div>
-    </header>
+        <div class="place" data-name="bandung">
+            <h2>Bandung</h2>
+            <p>Details about Bandung...</p>
+        </div>
+        <div class="place" data-name="surabaya">
+            <h2>Surabaya</h2>
+            <p>Details about Surabaya...</p>
+        </div>
+        <!-- Add more places as needed -->
+    </div>
 
-    <section class="projects">
-        <div class="container">
-            <h2>Projects</h2>
-            <div class="project-list">
-                <div class="project-item">
-                    <h3>TaskFlow</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ducimus dolores sequi unde rem corrupti, minus commodi, provident voluptas officiis quo sapiente nihil asperiores dicta ipsam cumque fuga veritatis officia.</p>
-                </div>
-                <div class="project-item">
-                    <h3>EcoCart</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum in praesentium officia aliquam, harum tempore fuga modi hic, consequatur enim sed quas sunt, deleniti similique mollitia dolores est! Deleniti, modi?</p>
-                </div>
-                <div class="project-item">
-                    <h3>EventPlanner</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda, sed exercitationem? Minus aliquid ea voluptates, eos odit repellat sint inventore harum dicta porro, quisquam tenetur quasi dignissimos, ipsa ad voluptate.</p>
-                </div>
-                <div class="project-item">
-                    <h3>FoodieFinder</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam a voluptatum expedita maxime debitis provident sequi dolores asperiores doloribus. Minima ex vel cupiditate corporis exercitationem itaque ratione dicta ipsam sequi.
-                    </p>
-                </div>
-            </div>
+    <div class="custom-shadow max-w-sm bg-white rounded-lg shadow bg-gray-800 ">
+        <a href="#">
+            <img class="rounded-t-lg"
+                src="https://rooms.sinergimanajemen.com/wp-content/uploads/2024/06/Cozzystay-Hotel.webp" alt="" />
+        </a>
+        <div class="p-5">
+            <p class="font-normal text-gray-700 text-gray-400">Semarang</p>
+            <a href="#">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-dark">Cozzy Stay</h5>
+            </a>
+            <p class="font-normal text-gray-700 text-gray-400 mt-6 mb-2">Start From <br> Rp. 176.980,00/day</p>
+            <button type="button"
+                class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Booking
+                Now</button>
         </div>
-    </section>
+    </div>
 
-    <section class="experience">
-        <div class="container">
-            <h2>Experience</h2>
-            <div class="experience-item">
-                <h3>Apple</h3>
-                <p>Lorem</p>
-                <ul>
-                    <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit doloremque autem voluptatem mollitia reiciendis eius repellendus minus necessitatibus omnis atque, possimus non! Fugiat quae tempora perspiciatis ex maxime aspernatur obcaecati.
-                    Fuga fugiat perspiciatis consectetur asperiores. Nisi quaerat laborum dolorem soluta sapiente! Fuga ad, ut commodi non debitis laboriosam ullam quo. Voluptas reiciendis quo sit ratione veritatis inventore vitae ullam minus!
-                    Saepe accusantium corrupti nam voluptate eaque ad nulla eos possimus assumenda hic libero cupiditate quam earum quaerat, eveniet natus quis! Voluptate magni corporis repellat possimus quam. Quis sed quos id?</li>
-                </ul>
-            </div>
-            <div class="experience-item">
-                <h3>Microsoft</h3>
-                <!-- Add experience details -->
-            </div>
-            <div class="experience-item">
-                <h3>Spotify</h3>
-                <!-- Add experience details -->
-            </div>
-            <div class="experience-item">
-                <h3>Stripe</h3>
-                <!-- Add experience details -->
-            </div>
-            <div class="experience-item">
-                <h3>Webflow</h3>
-                <!-- Add experience details -->
-            </div>
-        </div>
-    </section>
 
-    <section class="skills">
-        <div class="container">
-            <h2>Skills</h2>
-            <div class="skills-list">
-                <div class="skills-column">
-                    <h3>Web Design</h3>
-                    <ul>
-                        <li>UI/UX Design</li>
-                        <li>Responsive Design</li>
-                        <li>Wireframing</li>
-                        <li>User Research</li>
-                    </ul>
-                </div>
-                <div class="skills-column">
-                    <h3>Frontend</h3>
-                    <ul>
-                        <li>JavaScript</li>
-                        <li>ReactJS</li>
-                        <li>NextJS</li>
-                        <li>CSS3</li>
-                    </ul>
-                </div>
-                <div class="skills-column">
-                    <h3>Backend</h3>
-                    <ul>
-                        <li>Node.js</li>
-                        <li>MongoDB</li>
-                        <li>ExpressJS</li>
-                        <li>Vercel</li>
-                    </ul>
-                </div>
-                <div class="skills-column">
-                    <h3>Soft Skills</h3>
-                    <ul>
-                        <li>Effective Communication</li>
-                        <li>Collaboration</li>
-                        <li>Commitment</li>
-                        <li>Leadership</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.4.7/flowbite.min.js"></script>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Yoga All Rights Reserved.</p>
+    <script>
+        document.getElementById('search-button').addEventListener('click', function () {
+            var input = document.getElementById('search-input').value.toLowerCase();
+            var places = document.querySelectorAll('.place');
+
+            places.forEach(function (place) {
+                var name = place.getAttribute('data-name').toLowerCase();
+                if (name.includes(input)) {
+                    place.style.display = 'block';
+                } else {
+                    place.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Container */
+        .search-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid #d0ddea;
+            border-radius: 10px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.3);
+            /* Semi-transparent background */
+            backdrop-filter: blur(10px);
+            /* Blur effect */
+        }
+
+        /* Input field */
+        .search-container input[type="search"] {
+            border: none;
+            outline: none;
+            font-size: 16px;
+            padding: 15px;
+            border-radius: px;
+            flex: 1;
+            margin-right: 0px;
+            background-color: white;
+            color: black;
+            height: 50px;
+        }
+
+        /* Submit button */
+        .search-container button {
+            background-color: #1E90FF;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px font-size: 16px;
+            border-radius: 0px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-container button:hover {
+            background-color: #1C86EE;
+        }
+
+        /* Icon inside the button */
+        .search-container button svg {
+            margin-right: 5px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="https://rooms.sinergimanajemen.com" method="get">
+        <div class="search-container">
+            <input type="search" placeholder="Ex: Semarang, Yogyakarta, Surabaya, etc." id="search-input">
+            <button type="submit" id="search-button">
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                        d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
+                </svg>
+
+                Find It!
+            </button>
         </div>
-    </footer>
+    </form>
+
+    <script>
+        document.getElementById('search-button').addEventListener('click', function () {
+            var input = document.getElementById('search-input').value.toLowerCase();
+            var places = document.querySelectorAll('.place');
+
+            places.forEach(function (place) {
+                var name = place.getAttribute('data-name').toLowerCase();
+                if (name.includes(input)) {
+                    place.style.display = 'block';
+                } else {
+                    place.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

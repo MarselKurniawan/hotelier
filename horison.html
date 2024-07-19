@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://myhorison.com/v2/css/booking/owl.carousel.min.css" />
+</head>
+
+<body>
+    <div class="container-xxl p-0">
+        <section class="brands mb-5" style="margin-top: 40px">
+            <div class="container">
+                <div class="row text-center text-uppercase">
+                    <div class="owl-carousel owl-theme logo-group align-items-sm-center justify-content-sm-center wow slideInRight"
+                        data-wow-delay="0.5s">
+                        <div class="slide slidelogo brands">
+                            <img src="https://rooms.sinergimanajemen.com/wp-content/uploads/2024/07/5.png"
+                                class="img-fluid" />
+                        </div>
+                        <div class="slide slidelogo">
+                            <img src="https://rooms.sinergimanajemen.com/wp-content/uploads/2024/07/4.png"
+                                class="img-fluid" />
+                        </div>
+                        <div class="slide slidelogo">
+                            <img src="https://rooms.sinergimanajemen.com/wp-content/uploads/2024/07/3.png"
+                                class="img-fluid" />
+                        </div>
+                        <div class="slide slidelogo">
+                            <img src="https://rooms.sinergimanajemen.com/wp-content/uploads/2024/07/1.png"
+                                class="img-fluid" />
+                        </div>
+                        <div class="slide slidelogo">
+                            <img src="https://rooms.sinergimanajemen.com/wp-content/uploads/2024/07/2.png"
+                                class="img-fluid" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Optional JavaScript; choose one of the two! -->
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript" src="https://myhorison.com/cdn/moment.min.js"></script>
+        <script type="text/javascript" src="https://myhorison.com/cdn/daterangepicker.min.js"></script>
+
+        <script src="https://myhorison.com/cdn/bootstrap.bundle.min.js"></script>
+        <script src="https://myhorison.com/v2/lib/wow/wow.min.js"></script>
+        <script src="https://myhorison.com/v2/js/booking/owl.carousel.min.js"></script>
+        <script src="https://myhorison.com/v2/js/booking/custom.js"></script>
+
+        <script>
+            $(function () {
+                $("#suggest").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: $("#suggest").data('url'),
+                            dataType: 'json',
+                            data: {
+                                query: request.term
+                            },
+                            success: function (data) {
+                                response(data.map(function (item) {
+                                    return {
+                                        label: item.suggestion,
+                                        value: item.suggestion,
+                                        data: item
+                                    };
+                                }));
+                            }
+                        });
+                    },
+                    select: function (event, ui) {
+                        $("#suggest").val(ui.item.label);
+
+                        var selectedData = ui.item.data;
+                        console.log(selectedData);
+                        return false;
+                    }
+                });
+
+                $("#suggest").on("focus", function (event) {
+                    $(this).autocomplete("search");
+                });
+            });
+        </script>
+
+        <script>
+            jQuery(document).ready(function ($) {
+                // Menggunakan $ untuk skrip jQuery di sini
+                $('#daterange').daterangepicker({
+                    opens: 'left',
+                    startDate: moment(),
+                    endDate: moment().add(1, 'days'),
+                    showDropdowns: false, // Menonaktifkan tampilan dropdown
+                    showApplyButton: false, // Menyembunyikan tombol Apply
+                    showCancel: false, // Menyembunyikan tombol Cancel
+                    locale: {
+                        format: 'DD/MM/YYYY' // Format tanggal/bulan/tahun
+                    }
+                });
+            });
+        </script>
+
+</body>
+
+</html>
